@@ -12,9 +12,20 @@ def get_num_character(file_path):
     lower_text_file = get_book_text(file_path).lower()
     list_text_file = list(lower_text_file)
     character_dict = {}
-    for letter in list_text_file:
-        if letter in character_dict:
-            character_dict[letter] += 1
+    for char in list_text_file:
+        if char in character_dict:
+            character_dict[char] += 1
         else:
-            character_dict[letter] = 1
+            character_dict[char] = 1
     return character_dict
+
+def get_sorted_character(file_path):
+    unsorted_char = get_num_character(file_path)
+    sorted_list = []
+    for char in unsorted_char:
+        temp_dict = {}
+        temp_dict["char"] = char
+        temp_dict["num"] = unsorted_char[char]
+        sorted_list.append(temp_dict)
+    sorted_list.sort(reverse=True, key=lambda item: item["num"])
+    return sorted_list
